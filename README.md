@@ -1,21 +1,29 @@
 # Diego Navarro — Portfolio
 
-Sitio estático y autónomo del portafolio de Diego Andrés Navarro Martín.
-Página única HTML, lista para desplegar en cualquier static host (Vercel,
-Netlify, GitHub Pages).
+Portafolio de Diego Andrés Navarro Martín (fotografía y video). Es la base
+original del sitio (reconstruida desde la fuente en Open Design) **tal cual**,
+con un único cambio sobre el original: el **badge "Made in Framer" está
+ocultado** vía CSS (el nodo se conserva para no romper la hidratación del
+runtime). El tracking de analytics ya fue eliminado. Todo lo demás se mantiene
+igual que el sitio original.
+
+Listo para desplegar en cualquier static host (Vercel, Netlify, GitHub Pages).
 
 ## Estructura
 
 ```
 .
 ├── index.html        # El sitio completo (entrada de deploy)
-├── favicon.svg       # Icono del sitio
-├── assets/           # Recursos auto-alojados (fuentes + imágenes) — self-host
-├── NOTES.md          # Documentación del proyecto (fuente, licencia, gaps)
+├── assets/           # Recursos (imágenes, fuentes, CSS) — self-host local
+├── NOTES.md          # Documentación del proyecto (fuente, cambios, gaps)
+├── README.md         # Este archivo
 └── .gitignore        # Excluye artefactos de trabajo del repo
 ```
 
-## Deploy en Vercel
+> Nota: `RECON/`, `mirrored/`, `.od-skills/` y `.file-versions/` (artefactos del
+> proceso de clonado) están excluidos del repo y no se copian aquí.
+
+## Despliegue en Vercel
 
 1. Sube este repositorio a GitHub.
 2. En Vercel, `Add New → Project → Import` el repo.
@@ -24,7 +32,10 @@ Netlify, GitHub Pages).
 
 ## Notas
 
-- Las fuentes son auto-alojadas en `assets/fonts/`.
-- Las imágenes se sirven desde un CDN externo; la copia local en
-  `assets/images/` está preparada para sustituir el CDN si se desea funcionar
-  totalmente offline.
+- El sitio carga el runtime y las imágenes desde un CDN externo en tiempo de
+  ejecución (igual que el original); `assets/` contiene copias locales de
+  respaldo para los recursos.
+- El badge "Made in Framer" se oculta mediante una regla CSS inyectada
+  (`#__framer-badge-container`), sin eliminar el nodo, para conservar la
+  hidratación y la interactividad.
+- Los 4 embeds de YouTube requieren red/YouTube en runtime.
