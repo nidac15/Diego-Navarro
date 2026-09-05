@@ -1,0 +1,17 @@
+# --- Artefactos de trabajo (no desplegar) ---
+RECON/
+mirrored/
+.od-skills/
+.file-versions/
+
+# --- Dev tooling ---
+node_modules/
+*.log
+*.artifact.json
+.env
+.env.*
+
+# --- OS ---
+.DS_Store
+Thumbs.db
+desktop.ini
