@@ -3,6 +3,8 @@ RECON/
 mirrored/
 .od-skills/
 .file-versions/
+index.html.bak
+_media_map.json
 
 # --- Dev tooling ---
 node_modules/
