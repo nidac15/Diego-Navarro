@@ -1,0 +1,54 @@
+/* Diego Navarro — interaction styles (replaces the old page-builder runtime). */
+
+@property --border-top-width { syntax: '<length>'; inherits: true; initial-value: 0px; }
+@property --border-right-width { syntax: '<length>'; inherits: true; initial-value: 0px; }
+@property --border-bottom-width { syntax: '<length>'; inherits: true; initial-value: 0px; }
+@property --border-left-width { syntax: '<length>'; inherits: true; initial-value: 0px; }
+
+:root {
+  --dn-spring-04: cubic-bezier(0.25, 1, 0.5, 1);
+  --dn-spring-045: cubic-bezier(0.25, 1, 0.5, 1);
+  --dn-tween: cubic-bezier(0.15, 0.45, 0.15, 1.35);
+}
+@supports (transition-timing-function: linear(0, 1)) {
+  :root {
+    --dn-spring-04: linear(0, 0.0425, 0.143, 0.2706, 0.4045, 0.5317, 0.645, 0.7409, 0.8189, 0.8801, 0.9263, 0.9599, 0.9832, 0.9986, 1.0079, 1.013, 1.015, 1.015, 1.0138, 1.0121, 1.01, 1.008, 1.0062, 1.0046, 1.0033, 1.0023, 1.0014, 1.0008, 1.0004, 1.0001, 1);
+    --dn-spring-045: linear(0, 0.0426, 0.1422, 0.2671, 0.397, 0.5195, 0.6282, 0.7204, 0.7958, 0.8556, 0.9016, 0.936, 0.961, 0.9785, 0.9904, 0.998, 1.0026, 1.0051, 1.0061, 1.0063, 1.0058, 1.0051, 1.0043, 1.0035, 1.0028, 1.0021, 1.0016, 1.0011, 1.0008, 1.0005, 1);
+  }
+}
+
+/* Elements that only exist while the pointer is over their card. */
+.dn-S9bPR:not(.hover) > [data-dn-hover-only],
+.dn-hENS9:not(.hover) > [data-dn-hover-only] { display: none !important; }
+
+/* Archive card: dark overlay fades in on hover. */
+.dn-hENS9 .dn-tfs4ro { transition: opacity 0.497s var(--dn-spring-045); }
+.dn-hENS9.hover .dn-tfs4ro { opacity: 1 !important; }
+
+/* Buttons */
+.dn-pQ0w7 {
+  transition: --border-top-width 0.4s var(--dn-tween), --border-right-width 0.4s var(--dn-tween),
+    --border-bottom-width 0.4s var(--dn-tween), --border-left-width 0.4s var(--dn-tween);
+}
+.dn-pQ0w7.dn-v-18yu8hh.hover {
+  --border-top-width: 3px !important; --border-right-width: 3px !important;
+  --border-bottom-width: 3px !important; --border-left-width: 3px !important;
+}
+.dn-pQ0w7.dn-v-1bsugnz.hover .dn-ihcfks { --extracted-r6o4lv: rgb(255, 255, 255) !important; }
+
+/* Lightbox */
+.dn-lightbox-backdrop { position: fixed; inset: 0; z-index: 10; background-color: rgba(0, 0, 0, 0.4); }
+.dn-lightbox-holder { align-items: center; display: flex; inset: 24px; justify-content: center; pointer-events: none; position: fixed; z-index: 10; }
+.dn-lightbox-wrap { align-items: center; display: flex; justify-content: center; max-height: 100%; position: relative; width: 100%; max-width: 1920px; }
+.dn-lightbox-container { bottom: 0; position: absolute; top: 0; user-select: none; transform-origin: 50% 50% 0; }
+.dn-lightbox-container img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center; position: absolute; inset: 0; }
+
+/* Close icon used by the contact pop-up ("X Mark") */
+.dn-96y8z {
+  --dn-x-mask: url('data:image/svg+xml,<svg display="block" role="presentation" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M 0 12 L 12 0 M 0 0 L 12 12" fill="transparent" height="12px" stroke-dasharray="" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" stroke="black" transform="translate(6 6)" width="12px"/></svg>') alpha no-repeat center / auto var(--dn-icon-mask-mode, add), var(--dn-icon-mask, none);
+  -webkit-mask: var(--dn-x-mask);
+  mask: var(--dn-x-mask);
+  aspect-ratio: 1;
+  background-color: var(--szd5nr);
+  width: 24px;
+}

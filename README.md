@@ -1,41 +1,74 @@
 # Diego Navarro — Portfolio
 
-Portafolio de Diego Andrés Navarro Martín (fotografía y video). Es la base
-original del sitio (reconstruida desde la fuente en Open Design) **tal cual**,
-con un único cambio sobre el original: el **badge "Made in Framer" está
-ocultado** vía CSS (el nodo se conserva para no romper la hidratación del
-runtime). El tracking de analytics ya fue eliminado. Todo lo demás se mantiene
-igual que el sitio original.
+Portafolio de fotografía y vídeo de Diego Andrés Navarro Martín.
 
-Listo para desplegar en cualquier static host (Vercel, Netlify, GitHub Pages).
+Sitio **100 % estático** (HTML + CSS + JavaScript sin dependencias). No necesita
+build, ni Node, ni ningún servicio externo: todo (páginas, imágenes, vídeos,
+fuentes y scripts) se sirve desde este repositorio. Las únicas conexiones
+externas son las que el propio contenido enlaza: los vídeos de YouTube del Home
+y los enlaces a WhatsApp, Instagram y Behance.
 
 ## Estructura
 
 ```
 .
-├── index.html        # El sitio completo (entrada de deploy)
-├── assets/           # Recursos (imágenes, fuentes, CSS) — self-host local
-├── NOTES.md          # Documentación del proyecto (fuente, cambios, gaps)
-├── README.md         # Este archivo
-└── .gitignore        # Excluye artefactos de trabajo del repo
+├── index.html                     # Home
+├── about.html                     # /about
+├── archivo-don-goa/
+│   ├── archive.html               # /archivo-don-goa/archive (archivo completo)
+│   ├── archive-urban.html         # categorías (Urban, Concert, Video, Food, Portrait)
+│   ├── …
+│   └── <proyecto>.html            # 17 páginas de proyecto
+├── 404.html
+├── assets/
+│   ├── img/      # fotos en WebP: <id>-512|1024|2048|4096|full.webp
+│   ├── video/    # vídeos y animaciones en WebM (+ MP4 de respaldo para Safari antiguo)
+│   ├── fonts/    # Inter (woff2) autoalojada
+│   ├── css/      # site.css (estados de interacción), archive.css (filtro del archivo)
+│   ├── js/       # site.js (toda la interactividad)
+│   └── archive/  # fragmentos HTML que usa el filtro del archivo
+├── favicon.png
+├── robots.txt
+└── vercel.json                    # URLs limpias (/about → about.html) y caché
 ```
 
-> Nota: `RECON/`, `mirrored/`, `.od-skills/` y `.file-versions/` (artefactos del
-> proceso de clonado) están excluidos del repo y no se copian aquí.
+## Despliegue
 
-## Despliegue en Vercel
+**Vercel** (recomendado): *Add New → Project → Import* este repositorio.
+Framework Preset **Other**, Root Directory `/`, sin build command ni output
+directory. `vercel.json` ya activa las URLs limpias (`/about`, `/archivo-don-goa/...`).
 
-1. Sube este repositorio a GitHub.
-2. En Vercel, `Add New → Project → Import` el repo.
-3. Framework Preset: **Other** (estático). Root Directory: `/` (raíz).
-4. No requiere build command ni output directory — `index.html` en la raíz.
+También funciona en Netlify, Cloudflare Pages o GitHub Pages (todos sirven
+`about.html` cuando se pide `/about`).
 
-## Notas
+## Interactividad (assets/js/site.js)
 
-- El sitio carga el runtime y las imágenes desde un CDN externo en tiempo de
-  ejecución (igual que el original); `assets/` contiene copias locales de
-  respaldo para los recursos.
-- El badge "Made in Framer" se oculta mediante una regla CSS inyectada
-  (`#__framer-badge-container`), sin eliminar el nodo, para conservar la
-  hidratación y la interactividad.
-- Los 4 embeds de YouTube requieren red/YouTube en runtime.
+Reproduce el comportamiento original de la web:
+
+- **Hero del Home**: al pasar el ratón, la foto se expande y recupera el color.
+- **Galería del Home**: al pasar el ratón aparecen los datos de la toma
+  (ISO, apertura, velocidad, focal); al hacer clic se abre la foto ampliada.
+- **Pop-up de contacto** ("Let's work together"): aparece una vez a los 20 s o al
+  llegar a la mitad de la página.
+- **Menú móvil** (botón hamburguesa).
+- **Archivo**: filtro por categoría sin recargar la página y tarjetas con
+  título, lugar y fecha al pasar el ratón.
+- **Páginas de proyecto**: fotos ampliables y vídeo que se reproduce solo al
+  entrar en pantalla.
+
+## Imágenes
+
+Cada foto tiene varias resoluciones en WebP y el navegador elige la adecuada
+(`srcset`). Para cambiar una foto, sustituye sus archivos en `assets/img/`
+manteniendo los nombres, o añade nuevos y actualiza el `srcset` en el HTML.
+
+## Dominio
+
+Cuando el dominio definitivo esté listo, se puede añadir en cada página
+`<link rel="canonical" href="https://tu-dominio/...">` y generar un
+`sitemap.xml`.
+
+## Notas legales
+
+- El nombre/marca "Diego Andrés Navarro Martín" y el logo "DNAVA" pertenecen al autor.
+- Las fotografías pertenecen al autor: no redistribuir sin permiso.
