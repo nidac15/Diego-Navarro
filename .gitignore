@@ -9,3 +9,6 @@ node_modules/
 .env
 .env.*
 .vercel
+
+# --- Copias de seguridad locales ---
+copia-de-seguridad/
