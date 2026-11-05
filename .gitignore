@@ -1,19 +1,11 @@
-# --- Artefactos de trabajo (no desplegar) ---
-RECON/
-mirrored/
-.od-skills/
-.file-versions/
-index.html.bak
-_media_map.json
-
-# --- Dev tooling ---
-node_modules/
-*.log
-*.artifact.json
-.env
-.env.*
-
 # --- OS ---
 .DS_Store
 Thumbs.db
 desktop.ini
+
+# --- Dev tooling ---
+node_modules/
+*.log
+.env
+.env.*
+.vercel
