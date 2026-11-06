@@ -52,3 +52,8 @@
   background-color: var(--szd5nr);
   width: 24px;
 }
+
+/* Long video descriptions (home Video section and video project pages) */
+.dn-video-desc { position: relative; flex: none; display: flex; flex-direction: column; gap: 16px; width: 100%; max-width: 806px; white-space: pre-wrap; word-break: break-word; }
+.dn-video-desc p { margin: 0; }
+.dn-video-feature { order: -1; display: flex; flex-direction: column; gap: 16px; width: 100%; flex: none; }
